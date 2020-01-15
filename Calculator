@@ -1,0 +1,33 @@
+package com.example.application1;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Button;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        Button AddBtn = (Button) findViewById(R.id.AddBtn);
+        AddBtn.setOnClickListener (new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                EditText EnterNum1 = (EditText) findViewById(R.id.EnterNum1);
+                EditText EnterNum2 = (EditText) findViewById(R.id.EnterNum2);
+                TextView resultAdd = (TextView) findViewById(R.id.resultAdd);
+
+                int num1 = Integer.parseInt(EnterNum1.getText().toString());
+                int num2 = Integer.parseInt(EnterNum2.getText().toString());
+                int result = num1+num2;
+
+                resultAdd.setText(result+"");
+            }
+        });
+    }
+}
