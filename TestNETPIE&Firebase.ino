@@ -1,6 +1,3 @@
-/*  NETPIE ESP8266 basic sample                            */
-/*  More information visit : https://netpie.io             */
-
 #include <ESP8266WiFi.h>
 #include <MicroGear.h>
 #include <BH1750FVI.h>
@@ -9,14 +6,15 @@
 #include <FirebaseArduino.h>
 //#include "FirebaseESP8266.h"
 
-
-
+// WiFi Config
 const char* ssid     = "マイルシナ";
 const char* password = "0993651189";
 
+// FireBase Config
 #define FIREBASE_HOST "test-database-cd409.firebaseio.com"
 #define FIREBASE_AUTH "yY4naBUfgLG4uhpUbEOJvWZHSaWBESu3YTi0vXzv"
 
+//NETPIE Config
 #define APPID   "SmartBusu"
 #define KEY     "MZJlQB4lLA8mf7y"
 #define SECRET  "98Zltj3ZA3A4q1G02mzHGLiti"
