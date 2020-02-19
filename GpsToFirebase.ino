@@ -74,10 +74,8 @@ void loop()
     Serial.print(flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flat, 6);
     Serial.print(" LON=");
     Serial.print(flon == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flon, 6);
-  }
-  
-
-  Firebase.setString("bus_1", flat+"/"+flon);
+     
+     Firebase.setString("bus_1", String(flat)+"/"+String(flon));
     if (Firebase.failed()) {
       Serial.print("set /number failed:");
       Serial.println(Firebase.error());
@@ -86,4 +84,8 @@ void loop()
     }
     Serial.print("set /number to ");
     Serial.println(Firebase.getString("bus_1"));  
+  }
+  
+
+  
 }
