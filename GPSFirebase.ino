@@ -5,14 +5,8 @@
 
 
 // WiFi Config
-//const char* ssid     = "マイルシナ-PHONE";
-//const char* password = "0993651189";
-
-//const char* ssid     = "Ananda";
-//const char* password = "k99229922";
-
-const char* ssid     = "マイルシナ";
-const char* password = "0993651189";
+const char* ssid     = "WIFI_SSID";
+const char* password = "WIFI_PASSWORD";
 
 // FireBase Config
 #define FIREBASE_HOST "test-database-cd409.firebaseio.com"
@@ -23,11 +17,6 @@ WiFiClient client;
 
 int s_check = 0;
 
-/*
-   This sample sketch demonstrates the normal use of a TinyGPS++ (TinyGPSPlus) object.
-   It requires the use of SoftwareSerial, and assumes that you have a
-   4800-baud serial GPS device hooked up on pins 4(rx) and 3(tx).
-*/
 static const int RXPin = 4, TXPin = 5;
 static const uint32_t GPSBaud = 9600;
 
@@ -98,20 +87,6 @@ void displayInfo()
     }
     Serial.print("set /bus_1/LatLng to ");
     Serial.println(Firebase.getString("bus_1/LatLng"));
-
-    /*
-    //set lng
-    Firebase.setString("bus_1/lng", String(flng));
-    if (Firebase.failed()) {
-      Serial.print("set /number failed:");
-      Serial.println(Firebase.error());
-      delay(1000);  
-      return;
-    }
-    Serial.print("set /bus_1/lng to ");
-    Serial.println(Firebase.getString("bus_1/lng"));
-    */
-    
   }
   else
   {
