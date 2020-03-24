@@ -184,7 +184,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         // Make lines from each locate and Calculate distance and time to arrive
                         TaskRequestDirections taskRequestDirections = new TaskRequestDirections(); taskRequestDirections.execute(url);
 
-                        //text.setText("Distance : "+ distance + " km.\n\nTime : "+timeBusArrive+ " s");
                         if(dist != null){
                             if(dist >= 1000){
                                 if(tbArrive < 60)
@@ -204,6 +203,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     }
                 };
                 timeBtn1.schedule(timeTaskBtn1,1000,2000);
+                //Copy to cancel
                 timeCoppy = timeBtn1;
                 timerTaskCoppy = timeTaskBtn1;
             }
@@ -227,7 +227,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         place1 = bStop.get(0); // ---get bus stop --- //
                         String url = getRequestUrl(place1.getPosition(), place2.getPosition());
 
-                        // Make lines from each locate and Calculate distance and time to arrive
                         TaskRequestDirections taskRequestDirections = new TaskRequestDirections(); taskRequestDirections.execute(url);
 
                         if(dist != null){
@@ -296,7 +295,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 };
                 timeBtn3.schedule(timeTaskBtn3,1000,2000);
                 timeCoppy = timeBtn3;
-                timerTaskCoppy = timeTaskBtn2;
+                timerTaskCoppy = timeTaskBtn3;
 
             }
         });
@@ -337,24 +336,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
-                //currentlatLng = new LatLng(location.getLatitude(), location.getLongitude());
+                //My location
                 mMap.setMyLocationEnabled(true);
-
-                /*if (m == null) {
-                    MarkerOptions marker = new MarkerOptions().position(currentlatLng);
-                    // take the locate on advice
-                    // place2 = new MarkerOptions().position(currentlatLng);
-
-                    marker.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_my_locat_test_foreground));
-                    m = mMap.addMarker(marker);
-                }
-                if (onStart) {
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentlatLng, 15));
-                    onStart = false;
-                } else {
-                    m.setPosition(currentlatLng);
-                    // place2 = new MarkerOptions().position(currentlatLng);
-                }*/
             }
 
             @Override
@@ -395,7 +378,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 mMap.addMarker(marker);
                                 bStop.add(marker);
                                 MarkerOptions b = bStop.get(a);
-                                System.out.println(b.getPosition()+" "+a);
+                                //System.out.println(b.getPosition()+" "+a);
                                 a++;
 
 
@@ -419,10 +402,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 String value = dataSnapshot.getValue(String.class);
-                //Log.d(TAG, "Value is: " + value);
                 String[] latLngOfValue = value.split("/");
-                //Log.d(TAG, "Value Lat is: " + latLngOfValue[0]);
-                //Log.d(TAG, "Value Lng is: " + latLngOfValue[1]);
 
                 Double dLat = Double.parseDouble(latLngOfValue[0]);
                 Double dLng = Double.parseDouble(latLngOfValue[1]);
@@ -495,6 +475,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
 
             responseString = stringBuffer.toString();
+            System.out.println(responseString);
             bufferedReader.close();
             inputStreamReader.close();
 
@@ -509,7 +490,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         return responseString;
     }
 
-    @SuppressLint("MissingPermission")
+    /*@SuppressLint("MissingPermission")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -519,8 +500,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
                 break;
         }
-    }
-    //Get the url map
+    }*/
+    //Use URL to process direction
     public class TaskRequestDirections extends AsyncTask<String, Void, String> {
 
         @Override
@@ -571,8 +552,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 dist = Double.parseDouble(distance1.getString("text").replaceAll("[^\\.0123456789]",""));
                 if(dist < 5)
                     dist = dist*1000;
-                distance = distance1.getString("text");
-                System.out.println(distance);
+                //distance = distance1.getString("text");
+                //System.out.println(distance);
 
                 // Bus speed is 30 km convert ro ms equal 8.333334
                 tbArrive = (int)Math.round(dist/8.3);
