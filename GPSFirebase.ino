@@ -5,8 +5,8 @@
 
 
 // WiFi Config
-const char* ssid     = "WIFI_SSID";
-const char* password = "WIFI_PASSWORD";
+const char* ssid     = "WiFi_SSID";
+const char* password = "WiFi_Password";
 
 // FireBase Config
 #define FIREBASE_HOST "test-database-cd409.firebaseio.com"
@@ -16,7 +16,14 @@ const char* password = "WIFI_PASSWORD";
 WiFiClient client;
 
 int s_check = 0;
+int timefix = 7;
+int datefix = 0;
 
+/*
+   This sample sketch demonstrates the normal use of a TinyGPS++ (TinyGPSPlus) object.
+   It requires the use of SoftwareSerial, and assumes that you have a
+   4800-baud serial GPS device hooked up on pins 4(rx) and 3(tx).
+*/
 static const int RXPin = 4, TXPin = 5;
 static const uint32_t GPSBaud = 9600;
 
@@ -38,7 +45,7 @@ void setup()
         }
     }
 
-    Serial.println("WiFi connected");  
+    Serial.println("WiFi connected");
     Serial.println("IP address: ");
     Serial.println(WiFi.localIP());
 
@@ -69,7 +76,7 @@ void loop()
 
 void displayInfo()
 {
-  Serial.print(F("Location: ")); 
+  Serial.print(F("Location: "));
   if (gps.location.isValid())
   {
     Serial.print(gps.location.lat(), 6);
@@ -82,7 +89,7 @@ void displayInfo()
     if (Firebase.failed()) {
       Serial.print("set /LatLng failed:");
       Serial.println(Firebase.error());
-      delay(1000);  
+      delay(1000);
       return;
     }
     Serial.print("set /bus_1/LatLng to ");
@@ -94,6 +101,17 @@ void displayInfo()
   }
 
   Serial.println();
+  //TimeZone FIX
+  if(gps.date.isValid() && gps.time.isValid()){
+    if(gps.time.hour()==0){
+      datefix = 0;
+      timefix = 7;
+    }
+    if(gps.time.hour()>=17){
+      datefix = 1;
+      timefix = 7-24;
+    }
+  }
 
   Serial.print(F("Date : "));
   if (gps.date.isValid())
@@ -105,17 +123,17 @@ void displayInfo()
     Serial.print(gps.date.year());
 
     //set Date
-    Firebase.setString("bus_1/Date", String(gps.date.year()) + "/" + String(gps.date.month()) + "/" + String(gps.date.day()));
+    Firebase.setString("bus_1/Date", String(gps.date.year()) + "/" + String(gps.date.month()) + "/" + String(gps.date.day()+datefix));
     if (Firebase.failed()) {
       Serial.print("set /Date failed:");
       Serial.println(Firebase.error());
-      delay(1000);  
+      delay(1000);
       return;
     }
     Serial.println();
     Serial.print("set /bus_1/Date to ");
     Serial.println(Firebase.getString("bus_1/Date"));
-  
+
   }
   else
   {
@@ -136,11 +154,11 @@ void displayInfo()
     Serial.print(gps.time.second());
 
     //set Time
-    Firebase.setString("bus_1/Time", String(gps.time.hour()+7) + ":" + String(gps.time.minute()) + ":" + String(gps.time.second()));
+    Firebase.setString("bus_1/Time", String(gps.time.hour()+timefix) + ":" + String(gps.time.minute()) + ":" + String(gps.time.second()));
     if (Firebase.failed()) {
       Serial.print("set /Time failed:");
       Serial.println(Firebase.error());
-      delay(1000);  
+      delay(1000);
       return;
     }
     Serial.println();
@@ -155,20 +173,20 @@ void displayInfo()
   Serial.println();
 
   if(s_check == 0){
-    s_check = 1;  
+    s_check = 1;
   }
   else{
-    s_check = 0;  
+    s_check = 0;
   }
   Firebase.setInt("status", s_check);
     if (Firebase.failed()) {
       Serial.print("set /status failed:");
       Serial.println(Firebase.error());
-      delay(1000);  
+      delay(1000);
       return;
     }
 
-  Serial.println();  
-  
+  Serial.println();
+
   delay(1000);
 }
