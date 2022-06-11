@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100" height="100" viewBox="0 0 1000 1000">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        fill: #91d5ad;
+      }
+
+      .cls-2 {
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <circle class="cls-1" cx="500" cy="426" r="357"/>
+  <path id="Polygon_1" data-name="Polygon 1" class="cls-2" d="M500,931L178.989,577H821.011Z"/>
+  <image x="336" y="226" width="328" height="399" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAoCAYAAABw65OnAAACV0lEQVRYhe2YvWtUQRTFf3Ej+JFosBI0fhaCSgKaQgURC8HCSuwUOxtFbSxsLKwEKyv/giCiCP4J6VQklaAJkhUWE11QTGJMBNc9csM8HSYzxdu3b9diDzx237zZe87e++bOvdMniQQqwBhwCNgO7AZ2AEPABmAfsA5oAn3uexVYAhaAWaAGzAFvgUmgEeUyEcF1UtIzSfNqLxYkPZd0OuT0b4YlvWozcQqTkvZm3Fk4jgCvnUs7iePASxOxHphyMe40PgIH7J9f7ZIAw07jNxHnuyQgwzkLx1dgWxdF1PsBeyd8PAJmgC0lEH4H9gCXvLFNtkQWg2U0Eskd7bwOBnzfYkuyUoIHfKzh7HReiKInIkNPRIb/VkSzZM41VVR/ZNJm9zlQgoCl1QwZwPaORWDQG7bU+qukUDXdNuHzzcc8MRgZKxW91ZGhJyJDSkQduGmlF/C4IMdTZ+c68Ck6I1LU1CQNBUXMjRb7i1uBnQFJM2FRExNxJVFFvckpYCph53IoIhaO9wm3TucMQ2p+NRyIiRhN/Hgkp4jRRKl4OLivmHvmAvdY47o/cOHdnKHIcC+ws0vSl2BOzfaOceBioM72j4eutbdnJ3J6wccLYNwdK1wDtgbPn5iIU8BEAZKiOJO56X6L7i6KB/7RgOGD6446hVnH1/C38p8J8nfuyGdjC+KWgWFr/yPPVv4eH3lv7nTCtWcLtoAXEnar2Rw/T6T2kbBhzotY4YSfQ3xiOyKI4XNBERbKGP7xeW476hLXb0k/nMvutKkbv+3smd2GpLqkY6vPJP4AeMR7iy7fNz4AAAAASUVORK5CYII="/>
+</svg>
